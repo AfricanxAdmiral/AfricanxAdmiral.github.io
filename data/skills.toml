@@ -1,0 +1,32 @@
+[[groups]]
+name = "Languages"
+[[groups.items]]
+name  = "Your Language 1"
+level = 90
+[[groups.items]]
+name  = "Your Language 2"
+level = 80
+[[groups.items]]
+name  = "Your Language 3"
+level = 70
+
+[[groups]]
+name = "Frameworks"
+[[groups.items]]
+name  = "Framework 1"
+level = 85
+[[groups.items]]
+name  = "Framework 2"
+level = 75
+
+[[groups]]
+name = "Tools & Infra"
+[[groups.items]]
+name  = "Tool 1"
+level = 80
+[[groups.items]]
+name  = "Tool 2"
+level = 70
+[[groups.items]]
+name  = "Tool 3"
+level = 65

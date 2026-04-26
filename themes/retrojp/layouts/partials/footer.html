@@ -1,0 +1,10 @@
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-jp">{{ site.Params.japaneseTitle }}</div>
+    <div class="footer-links">
+      {{ with site.Params.github }}<a href="{{ . }}" target="_blank" rel="noopener">GitHub</a>{{ end }}
+      {{ with site.Params.email }}<a href="mailto:{{ . }}">Email</a>{{ end }}
+    </div>
+    <div class="footer-copy">© {{ now.Year }} {{ site.Params.author }} — built with Hugo</div>
+  </div>
+</footer>

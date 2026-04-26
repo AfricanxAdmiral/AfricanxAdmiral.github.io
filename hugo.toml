@@ -1,0 +1,34 @@
+baseURL = "https://africanxadmiral.github.io/"
+languageCode = "en-us"
+title = "AfricanxAdmiral"
+theme = "retrojp"
+
+[params]
+  author = "AfricanxAdmiral"
+  description = "Developer · Explorer · Creator"
+  tagline = "// loading identity..."
+  japaneseTitle = "提督の記録"
+  accentColor = "#00ffcc"
+  github = "https://github.com/AfricanxAdmiral"
+  email = ""
+
+[menu]
+  [[menu.main]]
+    name = "HOME"
+    url = "/"
+    weight = 1
+  [[menu.main]]
+    name = "PORTFOLIO"
+    url = "/portfolio/"
+    weight = 2
+  [[menu.main]]
+    name = "BLOG"
+    url = "/blog/"
+    weight = 3
+
+[markup]
+  [markup.highlight]
+    style = "monokai"
+    lineNos = true
+  [markup.goldmark.renderer]
+    unsafe = true

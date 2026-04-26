@@ -1,0 +1,33 @@
+{{ define "main" }}
+
+<div class="page-hero">
+  <div class="page-hero-label fade-in">{{ site.Params.japaneseTitle }}</div>
+  <h1 class="page-hero-title fade-in">BLOG</h1>
+  <div class="page-hero-jp fade-in">記事一覧</div>
+  <p class="page-hero-desc fade-in">Thoughts, experiments, and observations.</p>
+</div>
+
+<div class="blog-list">
+  {{ range .Pages }}
+  <a href="{{ .Permalink }}" style="display:block; text-decoration:none;">
+    <div class="blog-post-item fade-in">
+      <div class="blog-post-date">{{ .Date.Format "2006.01.02" }}</div>
+      <div>
+        <div class="blog-post-title">{{ .Title }}</div>
+        <div class="blog-post-excerpt">{{ .Summary | truncate 150 }}</div>
+        {{ with .Params.tags }}
+        <div class="blog-post-tags">
+          {{ range . }}<span class="blog-tag">{{ . }}</span>{{ end }}
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </a>
+  {{ else }}
+  <div style="padding: 4rem 0; text-align:center; color: var(--text-dim); font-family: var(--font-pixel); font-size: 0.55rem; letter-spacing: 0.1em;">
+    NO POSTS YET — INITIALIZING...
+  </div>
+  {{ end }}
+</div>
+
+{{ end }}

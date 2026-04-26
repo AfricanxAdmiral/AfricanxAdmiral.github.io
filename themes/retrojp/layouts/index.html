@@ -1,0 +1,136 @@
+{{ define "main" }}
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-grid-lines"></div>
+  <div class="hero-bg-jp">提督</div>
+  <div class="hero-inner">
+    <div class="hero-tag">{{ site.Params.japaneseTitle }}</div>
+    <h1 class="hero-name glitch" data-text="{{ site.Params.author }}">
+      {{ site.Params.author }}
+    </h1>
+    <div class="hero-tagline">
+      <span class="typewriter" data-text="{{ site.Params.tagline }}">{{ site.Params.tagline }}</span>
+    </div>
+    <p class="hero-desc">{{ site.Params.description }}</p>
+    <div class="hero-cta">
+      <a class="btn" href="{{ "/portfolio/" | relURL }}">VIEW PORTFOLIO</a>
+      <a class="btn btn-alt" href="{{ "/blog/" | relURL }}">READ BLOG</a>
+    </div>
+  </div>
+  <div class="hero-scroll">SCROLL</div>
+</section>
+
+<!-- ═══ ABOUT PREVIEW ═══ -->
+<section class="section-preview" style="background: var(--bg-panel);">
+  <div class="section-preview-inner">
+    <div class="section-label fade-in">about</div>
+    <div class="section-title-row fade-in">
+      <h2>WHO AM I</h2>
+      <span class="section-title-jp">自己紹介</span>
+      <div class="section-divider"></div>
+    </div>
+    <div class="about-preview-grid fade-in">
+      <div class="about-preview-text">
+        {{ .Content }}
+        {{ if not .Content }}
+        <p>
+          Hello. I'm <strong style="color:var(--cyan)">{{ site.Params.author }}</strong> —
+          a developer with a taste for clean systems and interesting problems.
+          I build things for the web, explore ideas through code, and write
+          about whatever captures my attention.
+        </p>
+        <p>
+          Based somewhere between logic and creativity, I'm always looking for
+          the next challenge that pushes the boundary of what's possible.
+        </p>
+        {{ end }}
+        <div class="about-tags">
+          <span class="tag">DEVELOPER</span>
+          <span class="tag">EXPLORER</span>
+          <span class="tag">WRITER</span>
+        </div>
+      </div>
+      <div class="about-preview-visual">
+        <div class="avatar-frame">
+          <div class="avatar-placeholder">提</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PORTFOLIO PREVIEW ═══ -->
+<section class="section-preview">
+  <div class="section-preview-inner">
+    <div class="section-label fade-in">work</div>
+    <div class="section-title-row fade-in">
+      <h2>PORTFOLIO</h2>
+      <span class="section-title-jp">作品集</span>
+      <div class="section-divider"></div>
+    </div>
+    <div class="preview-cards">
+      {{ $projects := hugo.Data.projects }}
+      {{ range first 3 $projects.featured }}
+      <div class="preview-card fade-in">
+        <div class="card-num">{{ .num }}</div>
+        <div class="card-title">{{ .title }}</div>
+        <div class="card-excerpt">{{ .excerpt }}</div>
+        <div class="project-tech" style="margin-top:0.8rem">
+          {{ range .tech }}<span class="tech-tag">{{ . }}</span>{{ end }}
+        </div>
+        <a class="card-link" href="{{ "/portfolio/" | relURL }}">VIEW DETAILS →</a>
+      </div>
+      {{ else }}
+      {{ range seq 3 }}
+      <div class="preview-card fade-in">
+        <div class="card-num">PROJ_0{{ . }}</div>
+        <div class="card-title">PROJECT TITLE</div>
+        <div class="card-excerpt">A brief description of this project and the problems it solves.</div>
+        <a class="card-link" href="{{ "/portfolio/" | relURL }}">VIEW DETAILS →</a>
+      </div>
+      {{ end }}
+      {{ end }}
+    </div>
+    <div class="section-cta fade-in">
+      <a class="btn" href="{{ "/portfolio/" | relURL }}">FULL PORTFOLIO</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ BLOG PREVIEW ═══ -->
+<section class="section-preview" style="background: var(--bg-panel);">
+  <div class="section-preview-inner">
+    <div class="section-label fade-in">words</div>
+    <div class="section-title-row fade-in">
+      <h2>LATEST POSTS</h2>
+      <span class="section-title-jp">最新記事</span>
+      <div class="section-divider"></div>
+    </div>
+    <div class="preview-cards">
+      {{ $posts := where site.RegularPages "Section" "blog" }}
+      {{ range first 3 $posts }}
+      <div class="preview-card blog-card fade-in">
+        <div class="card-num">{{ .Date.Format "2006.01.02" }}</div>
+        <div class="card-title">{{ .Title }}</div>
+        <div class="card-excerpt">{{ .Summary | truncate 120 }}</div>
+        <a class="card-link" href="{{ .Permalink }}">READ POST →</a>
+      </div>
+      {{ else }}
+      {{ range seq 3 }}
+      <div class="preview-card blog-card fade-in">
+        <div class="card-num">2025.01.01</div>
+        <div class="card-title">BLOG POST TITLE</div>
+        <div class="card-excerpt">A preview of the blog post content, showing what the reader can expect inside...</div>
+        <a class="card-link" href="{{ "/blog/" | relURL }}">READ POST →</a>
+      </div>
+      {{ end }}
+      {{ end }}
+    </div>
+    <div class="section-cta fade-in">
+      <a class="btn btn-alt" href="{{ "/blog/" | relURL }}">ALL POSTS</a>
+    </div>
+  </div>
+</section>
+
+{{ end }}

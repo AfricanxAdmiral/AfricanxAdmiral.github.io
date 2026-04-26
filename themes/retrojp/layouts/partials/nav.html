@@ -1,0 +1,13 @@
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="{{ "/" | relURL }}">
+      <span class="nav-logo-bracket">[</span>{{ site.Params.author }}<span class="nav-logo-bracket">]</span>
+    </a>
+    <ul class="nav-links">
+      {{ range site.Menus.main }}
+      <li><a href="{{ .URL | relURL }}" class="{{ if eq $.RelPermalink .URL }}active{{ end }}">{{ .Name }}</a></li>
+      {{ end }}
+    </ul>
+    <button class="nav-toggle" aria-label="toggle menu">&#9776;</button>
+  </div>
+</nav>

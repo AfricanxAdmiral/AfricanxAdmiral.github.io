@@ -1,0 +1,26 @@
+[[featured]]
+num    = "PROJ_01"
+title  = "PROJECT ALPHA"
+excerpt = "A brief overview of what this project does and why it matters."
+description = "Full description of the project, its goals, challenges overcome, and outcomes achieved. Replace this with your actual project details."
+tech   = ["Go", "React", "PostgreSQL"]
+github = "https://github.com/AfricanxAdmiral"
+demo   = ""
+
+[[featured]]
+num    = "PROJ_02"
+title  = "PROJECT BETA"
+excerpt = "Short summary of the second project and its key outcomes."
+description = "Detailed explanation of the second project. What problem it solved, the approach taken, and results."
+tech   = ["Python", "FastAPI", "Docker"]
+github = "https://github.com/AfricanxAdmiral"
+demo   = ""
+
+[[featured]]
+num    = "PROJ_03"
+title  = "PROJECT GAMMA"
+excerpt = "What makes this project interesting and different from the rest."
+description = "Full description of the third project, methodology, and impact."
+tech   = ["TypeScript", "Next.js", "Tailwind"]
+github = "https://github.com/AfricanxAdmiral"
+demo   = ""

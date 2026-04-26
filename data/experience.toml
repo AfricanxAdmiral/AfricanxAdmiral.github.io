@@ -1,0 +1,11 @@
+[[roles]]
+period      = "2024 — PRESENT"
+title       = "YOUR ROLE TITLE"
+company     = "Company Name"
+description = "Describe what you did, built, or achieved in this role. Replace with your actual experience."
+
+[[roles]]
+period      = "2022 — 2024"
+title       = "PREVIOUS ROLE"
+company     = "Previous Company"
+description = "What you accomplished in this position. Technologies used, problems solved, impact made."
