@@ -114,7 +114,7 @@
         <div class="card-num">{{ .Date.Format "2006.01.02" }}</div>
         <div class="card-title">{{ .Title }}</div>
         <div class="card-excerpt">{{ .Summary | truncate 120 }}</div>
-        <a class="card-link" href="{{ .Permalink }}">READ POST →</a>
+        <a class="card-link" href="{{ .RelPermalink }}">READ POST →</a>
       </div>
       {{ else }}
       {{ range seq 3 }}

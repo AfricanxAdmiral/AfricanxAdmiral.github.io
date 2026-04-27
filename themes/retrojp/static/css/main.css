@@ -44,7 +44,6 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-mono);
-  transition: background 0.3s, color 0.3s;
   font-size: 16px;
   line-height: 1.7;
   min-height: 100vh;
@@ -103,46 +102,95 @@ a:hover { color: var(--magenta); }
 }
 
 /* ── Theme toggle ── */
-.theme-toggle {
-  background: none;
-  border: 1px solid var(--border);
-  cursor: pointer;
-  padding: 0.3rem 0.55rem;
+.nav-right {
   display: flex;
   align-items: center;
-  gap: 0.45rem;
-  transition: border-color 0.2s;
+  gap: 2rem;
+}
+.nav-sep {
+  width: 1px;
+  height: 0.9rem;
+  background: var(--border);
   flex-shrink: 0;
 }
-.theme-toggle:hover { border-color: var(--cyan); }
-.theme-toggle-track {
-  width: 28px;
-  height: 14px;
-  background: var(--border);
+.theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+.toggle-track {
+  width: 44px;
+  height: 20px;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
   position: relative;
-  transition: background 0.2s;
-  image-rendering: pixelated;
+  transition: border-color 0.2s;
 }
-.theme-toggle-thumb {
+.theme-toggle:hover .toggle-track { border-color: var(--cyan); }
+.toggle-thumb {
   position: absolute;
-  top: 2px; left: 2px;
-  width: 10px; height: 10px;
-  background: var(--cyan);
-  transition: transform 0.2s, background 0.2s;
-  box-shadow: 0 0 4px var(--cyan);
+  top: 1px;
+  width: 18px;
+  height: 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--cyan);
+  box-shadow: 0 0 6px var(--cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* pixel-step slide — 5 steps across the track */
+  transition: left 0.25s steps(5, end);
 }
-[data-theme="light"] .theme-toggle-thumb {
-  transform: translateX(14px);
-  background: var(--cyan);
-  box-shadow: 0 0 4px var(--cyan);
+.toggle-thumb::after {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--cyan);
+  line-height: 1;
 }
-[data-theme="light"] .theme-toggle-track { background: var(--border); }
-.theme-toggle-label {
-  font-family: var(--font-pixel);
-  font-size: 0.4rem;
-  color: var(--text-dim);
-  letter-spacing: 0.08em;
-  width: 16px;
+[data-theme="dark"]  .toggle-thumb::after { content: '☾'; }
+[data-theme="light"] .toggle-thumb::after { content: '☀'; }
+[data-theme="dark"]  .toggle-thumb { left: 1px; }
+[data-theme="light"] .toggle-thumb { left: 24px; }
+
+/* ── CRT transition overlay ── */
+.theme-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 3px,
+      rgba(0,0,0,0.25) 3px,
+      rgba(0,0,0,0.25) 4px
+    ),
+    var(--cyan);
+  opacity: 0;
+  transform: scaleY(0);
+  transform-origin: 50% 50%;
+}
+.theme-overlay.crt-off {
+  animation: crt-off 0.28s steps(6, end) forwards;
+}
+.theme-overlay.crt-on {
+  animation: crt-on 0.32s steps(6, end) forwards;
+}
+@keyframes crt-off {
+  0%   { opacity: 0;   transform: scaleY(1); }
+  30%  { opacity: 0.7; transform: scaleY(1); }
+  100% { opacity: 0.9; transform: scaleY(0.015); }
+}
+@keyframes crt-on {
+  0%   { opacity: 0.9; transform: scaleY(0.015); }
+  70%  { opacity: 0.5; transform: scaleY(1); }
+  100% { opacity: 0;   transform: scaleY(1); }
 }
 
 /* ── Nav ── */
@@ -153,7 +201,6 @@ a:hover { color: var(--magenta); }
   background: rgba(8,8,16,0.92);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--border);
-  transition: background 0.3s;
 }
 [data-theme="light"] .nav {
   background: rgba(240,236,224,0.92);
@@ -886,8 +933,11 @@ a:hover { color: var(--magenta); }
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
+  .nav-right { gap: 1rem; }
+  .nav-sep   { display: none; }
   .nav-links { display: none; flex-direction: column; gap: 1.2rem; }
   .nav-links.open { display: flex; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); padding: 1.5rem 2rem; border-bottom: 1px solid var(--border); }
+  [data-theme="light"] .nav-links.open { background: var(--bg); }
   .nav-toggle { display: block; }
   .about-preview-grid { grid-template-columns: 1fr; }
   .about-preview-visual { display: none; }

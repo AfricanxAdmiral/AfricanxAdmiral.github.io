@@ -3,15 +3,17 @@
     <a class="nav-logo" href="{{ "/" | relURL }}">
       <span class="nav-logo-bracket">[</span>{{ site.Params.author }}<span class="nav-logo-bracket">]</span>
     </a>
-    <ul class="nav-links">
-      {{ range site.Menus.main }}
-      <li><a href="{{ .URL | relURL }}" class="{{ if eq $.RelPermalink .URL }}active{{ end }}">{{ .Name }}</a></li>
-      {{ end }}
-    </ul>
-    <button class="theme-toggle" id="theme-toggle" aria-label="toggle light/dark mode">
-      <div class="theme-toggle-track"><div class="theme-toggle-thumb"></div></div>
-      <span class="theme-toggle-label" id="theme-label">DARK</span>
-    </button>
+    <div class="nav-right">
+      <ul class="nav-links">
+        {{ range site.Menus.main }}
+        <li><a href="{{ .URL | relURL }}" class="{{ if eq $.RelPermalink .URL }}active{{ end }}">{{ .Name }}</a></li>
+        {{ end }}
+      </ul>
+      <div class="nav-sep"></div>
+      <button class="theme-toggle" id="theme-toggle" aria-label="toggle light/dark mode" aria-pressed="false">
+        <div class="toggle-track"><div class="toggle-thumb"></div></div>
+      </button>
+    </div>
     <button class="nav-toggle" aria-label="toggle menu">&#9776;</button>
   </div>
 </nav>

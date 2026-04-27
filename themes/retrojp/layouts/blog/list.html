@@ -9,7 +9,7 @@
 
 <div class="blog-list">
   {{ range .Pages }}
-  <a href="{{ .Permalink }}" style="display:block; text-decoration:none;">
+  <a href="{{ .RelPermalink }}" style="display:block; text-decoration:none;">
     <div class="blog-post-item fade-in">
       <div class="blog-post-date">{{ .Date.Format "2006.01.02" }}</div>
       <div>

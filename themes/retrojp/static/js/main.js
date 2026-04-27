@@ -1,45 +1,68 @@
-// Theme toggle
+// ── Theme toggle with CRT transition ──────────────────────────
 const themeToggleBtn = document.getElementById('theme-toggle');
-const themeLabel = document.getElementById('theme-label');
+const themeOverlay   = document.getElementById('theme-overlay');
 
 function applyTheme(theme) {
   document.documentElement.setAttribute('data-theme', theme);
   localStorage.setItem('theme', theme);
-  if (themeLabel) themeLabel.textContent = theme === 'light' ? 'LITE' : 'DARK';
+  if (themeToggleBtn) {
+    themeToggleBtn.setAttribute('aria-pressed', theme === 'light' ? 'true' : 'false');
+  }
 }
 
-// Sync label on load
-if (themeLabel) {
-  themeLabel.textContent = (localStorage.getItem('theme') || 'dark') === 'light' ? 'LITE' : 'DARK';
+// Sync aria-pressed on load
+if (themeToggleBtn) {
+  const saved = localStorage.getItem('theme') || 'dark';
+  themeToggleBtn.setAttribute('aria-pressed', saved === 'light' ? 'true' : 'false');
+}
+
+function triggerCRTSwitch() {
+  if (!themeOverlay) return;
+  const next = (document.documentElement.getAttribute('data-theme') || 'dark') === 'dark'
+    ? 'light' : 'dark';
+
+  // Phase 1 — collapse screen to line
+  themeOverlay.classList.add('crt-off');
+
+  themeOverlay.addEventListener('animationend', () => {
+    themeOverlay.classList.remove('crt-off');
+
+    // Swap theme while screen is "off"
+    applyTheme(next);
+
+    // Phase 2 — expand from line with new theme
+    themeOverlay.classList.add('crt-on');
+    themeOverlay.addEventListener('animationend', () => {
+      themeOverlay.classList.remove('crt-on');
+    }, { once: true });
+
+  }, { once: true });
 }
 
 if (themeToggleBtn) {
-  themeToggleBtn.addEventListener('click', () => {
-    const current = document.documentElement.getAttribute('data-theme') || 'dark';
-    applyTheme(current === 'dark' ? 'light' : 'dark');
-  });
+  themeToggleBtn.addEventListener('click', triggerCRTSwitch);
 }
 
-// Nav toggle (mobile)
-const toggle = document.querySelector('.nav-toggle');
-const navLinks = document.querySelector('.nav-links');
-if (toggle && navLinks) {
-  toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+// ── Nav mobile toggle ─────────────────────────────────────────
+const menuToggle = document.querySelector('.nav-toggle');
+const navLinks   = document.querySelector('.nav-links');
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
 }
 
-// Scroll fade-in observer
-const observer = new IntersectionObserver((entries) => {
+// ── Scroll fade-in observer ───────────────────────────────────
+const fadeObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
+      fadeObserver.unobserve(entry.target);
     }
   });
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
 
-// Skill bar animation — triggered on scroll into view
+// ── Skill bar animation ───────────────────────────────────────
 const skillObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -56,7 +79,7 @@ document.querySelectorAll('.skills-grid').forEach(el => {
   skillObserver.observe(el);
 });
 
-// Typewriter for hero tagline
+// ── Typewriter for hero tagline ───────────────────────────────
 const typeEl = document.querySelector('.typewriter');
 if (typeEl) {
   const text = typeEl.dataset.text || typeEl.textContent;
@@ -66,8 +89,6 @@ if (typeEl) {
     if (i < text.length) {
       typeEl.textContent += text[i++];
       setTimeout(type, 60);
-    } else {
-      typeEl.style.borderRight = 'none';
     }
   };
   setTimeout(type, 500);
