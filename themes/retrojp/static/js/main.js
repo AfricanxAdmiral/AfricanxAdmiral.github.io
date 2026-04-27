@@ -1,3 +1,25 @@
+// Theme toggle
+const themeToggleBtn = document.getElementById('theme-toggle');
+const themeLabel = document.getElementById('theme-label');
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('theme', theme);
+  if (themeLabel) themeLabel.textContent = theme === 'light' ? 'LITE' : 'DARK';
+}
+
+// Sync label on load
+if (themeLabel) {
+  themeLabel.textContent = (localStorage.getItem('theme') || 'dark') === 'light' ? 'LITE' : 'DARK';
+}
+
+if (themeToggleBtn) {
+  themeToggleBtn.addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme') || 'dark';
+    applyTheme(current === 'dark' ? 'light' : 'dark');
+  });
+}
+
 // Nav toggle (mobile)
 const toggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');
