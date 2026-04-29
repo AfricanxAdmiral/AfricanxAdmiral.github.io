@@ -5,12 +5,12 @@ theme = "retrojp"
 
 [params]
   author = "AfricanxAdmiral"
-  description = "Developer · Explorer · Creator"
-  tagline = "// loading identity..."
-  japaneseTitle = "提督の記録"
+  description = "Software Engineer · Camera Man · Couch Potato"
+  tagline = "// loading identity ..."
+  japaneseTitle = "生活の記録"
   accentColor = "#00ffcc"
   github = "https://github.com/AfricanxAdmiral"
-  email = ""
+  email = "guiltyxapple@gmail.com"
 
 [menu]
   [[menu.main]]
