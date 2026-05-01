@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="380" viewBox="0 0 800 380">
+  <rect width="800" height="380" fill="#080810"/>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#00ffcc" stroke-width="0.4" opacity="0.15"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="380" fill="url(#grid)"/>
+  <rect x="2" y="2" width="796" height="376" fill="none" stroke="#00ffcc" stroke-width="1.5"/>
+  <path d="M 2 20 L 2 2 L 20 2"   fill="none" stroke="#ffd700" stroke-width="2"/>
+  <path d="M 780 2 L 798 2 L 798 20"  fill="none" stroke="#ffd700" stroke-width="2"/>
+  <path d="M 2 360 L 2 378 L 20 378"  fill="none" stroke="#ffd700" stroke-width="2"/>
+  <path d="M 780 378 L 798 378 L 798 360" fill="none" stroke="#ffd700" stroke-width="2"/>
+  <text x="400" y="165" text-anchor="middle" font-family="'Courier New', monospace" font-size="11" fill="#ff2d78" letter-spacing="6">// IMAGE PLACEHOLDER //</text>
+  <text x="400" y="200" text-anchor="middle" font-family="'Courier New', monospace" font-size="22" fill="#00ffcc" letter-spacing="4">REPLACE WITH YOUR IMAGE</text>
+  <text x="400" y="232" text-anchor="middle" font-family="'Courier New', monospace" font-size="11" fill="#5a6a7a" letter-spacing="3">800 × 380 — /static/img/</text>
+  <line x1="200" y1="255" x2="600" y2="255" stroke="#1e1e3f" stroke-width="1"/>
+  <text x="400" y="274" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" fill="#3a4a5a" letter-spacing="2">生活の記録</text>
+</svg>
