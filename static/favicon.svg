@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="1.2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- background -->
+  <rect width="32" height="32" fill="#080810"/>
+
+  <!-- border -->
+  <rect x="1" y="1" width="30" height="30" fill="none" stroke="#00ffcc" stroke-width="0.75" opacity="0.6"/>
+
+  <!-- pixel-art A  (5×5 grid, each cell 5px, origin 3,3) -->
+  <g fill="#00ffcc" filter="url(#glow)">
+    <!-- row 0: cols 1-3 -->
+    <rect x="8" y="3" width="15" height="5"/>
+    <!-- row 1: col 0, col 4 -->
+    <rect x="3" y="8" width="5" height="5"/>
+    <rect x="23" y="8" width="5" height="5"/>
+    <!-- row 2: all cols -->
+    <rect x="3" y="13" width="25" height="5"/>
+    <!-- row 3: col 0, col 4 -->
+    <rect x="3" y="18" width="5" height="5"/>
+    <rect x="23" y="18" width="5" height="5"/>
+    <!-- row 4: col 0, col 4 -->
+    <rect x="3" y="23" width="5" height="5"/>
+    <rect x="23" y="23" width="5" height="5"/>
+  </g>
+</svg>
