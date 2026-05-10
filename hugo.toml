@@ -11,6 +11,7 @@ theme = "retrojp"
   accentColor = "#00ffcc"
   github = "https://github.com/AfricanxAdmiral"
   email = "guiltyxapple@gmail.com"
+  avatar = "/img/avatar.png"
 
 [menu]
   [[menu.main]]

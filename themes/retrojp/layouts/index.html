@@ -53,7 +53,11 @@
       </div>
       <div class="about-preview-visual">
         <div class="avatar-frame">
+          {{ with site.Params.avatar }}
+          <img src="{{ . }}" alt="{{ site.Params.author }}" class="avatar-img">
+          {{ else }}
           <div class="avatar-placeholder">提</div>
+          {{ end }}
         </div>
       </div>
     </div>
