@@ -35,5 +35,5 @@ Push to `main` → GitHub Actions builds and deploys automatically (~1 min).
 ## Tech
 
 - [Hugo](https://gohugo.io/) — static site generator
-- Custom `retrojp` theme (no external dependencies)
+- Custom `retrojp` theme — dark/light mode toggle, CRT transition animation, pixel fonts
 - GitHub Pages + GitHub Actions
