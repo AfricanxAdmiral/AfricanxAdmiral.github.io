@@ -59,6 +59,9 @@
           <div class="avatar-placeholder">提</div>
           {{ end }}
         </div>
+        {{ with site.Params.avatarCaption }}
+        <div class="avatar-caption">{{ . }}</div>
+        {{ end }}
       </div>
     </div>
   </div>
