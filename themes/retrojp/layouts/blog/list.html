@@ -15,9 +15,9 @@
       <div>
         <div class="blog-post-title">{{ .Title }}</div>
         <div class="blog-post-excerpt">{{ .Summary | truncate 150 }}</div>
-        {{ with .Params.tags }}
-        <div class="blog-post-tags">
-          {{ range . }}<span class="blog-tag">{{ . }}</span>{{ end }}
+        {{ with .GetTerms "tags" }}
+        <div class="blog-post-tags" onclick="event.preventDefault()">
+          {{ range . }}<a class="blog-tag" href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }}
         </div>
         {{ end }}
       </div>

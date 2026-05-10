@@ -2,7 +2,7 @@
 
 Personal portfolio and blog site.
 
-Built with [Hugo](https://gohugo.io/) and a custom theme — dark retro video game aesthetic with Japanese visual elements. Deployed automatically to [africanxadmiral.github.io](https://africanxadmiral.github.io) via GitHub Actions on every push to `main`.
+Built with [Hugo](https://gohugo.io/) and a custom theme — dark retro video game aesthetic with Japanese visual elements — built wtih Claude Sonnet 4.6. Deployed automatically to [africanxadmiral.github.io](https://africanxadmiral.github.io) via GitHub Actions on every push to `main`.
 
 ## Local development
 
@@ -16,7 +16,7 @@ Open [http://localhost:1313](http://localhost:1313). Changes hot-reload automati
 
 **New blog post**
 ```bash
-hugo new content blog/my-post-title.md
+hugo new content blog/<my-post-title>.md
 ```
 Set `draft: false` in the front matter when ready to publish.
 

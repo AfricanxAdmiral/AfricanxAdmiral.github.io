@@ -818,6 +818,12 @@ a:hover { color: var(--magenta); }
   padding: 0.2rem 0.5rem;
   border: 1px solid var(--magenta);
   color: var(--magenta);
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+.blog-tag:hover {
+  background: var(--magenta);
+  color: var(--bg);
 }
 
 /* ============================================================

@@ -6,9 +6,9 @@
     {{ with .Params.readingtime }} · {{ . }} MIN READ{{ end }}
   </div>
   <h1 class="post-title">{{ .Title }}</h1>
-  {{ with .Params.tags }}
+  {{ with .GetTerms "tags" }}
   <div class="post-tags">
-    {{ range . }}<span class="blog-tag">{{ . }}</span>{{ end }}
+    {{ range . }}<a class="blog-tag" href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }}
   </div>
   {{ end }}
 </div>

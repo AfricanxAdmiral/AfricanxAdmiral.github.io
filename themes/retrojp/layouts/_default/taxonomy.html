@@ -11,6 +11,11 @@
       <div>
         <div class="blog-post-title">{{ .Title }}</div>
         <div class="blog-post-excerpt">{{ .Summary | truncate 150 }}</div>
+        {{ with .GetTerms "tags" }}
+        <div class="blog-post-tags" onclick="event.preventDefault()">
+          {{ range . }}<a class="blog-tag" href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }}
+        </div>
+        {{ end }}
       </div>
     </div>
   </a>
