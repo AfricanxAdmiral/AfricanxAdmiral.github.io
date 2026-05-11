@@ -47,7 +47,7 @@ body {
   font-size: 16px;
   line-height: 1.7;
   min-height: 100vh;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* ── CRT overlay effects ── */
@@ -534,11 +534,21 @@ a:hover { color: var(--magenta); }
   line-height: 1.5;
 }
 
-/* Preview cards grid */
+/* Preview cards — horizontal drag-scroll row */
 .preview-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  display: flex;
   gap: 1.5rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  cursor: grab;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.preview-cards::-webkit-scrollbar { display: none; }
+.preview-cards:active { cursor: grabbing; }
+.preview-cards .preview-card {
+  flex: 0 0 300px;
 }
 .preview-card {
   background: var(--bg-card);
@@ -728,11 +738,21 @@ a:hover { color: var(--magenta); }
   box-shadow: 0 0 6px var(--cyan);
 }
 
-/* Projects grid */
+/* Projects grid — horizontal drag-scroll row */
 .projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  display: flex;
   gap: 1.5rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  cursor: grab;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.projects-grid::-webkit-scrollbar { display: none; }
+.projects-grid:active { cursor: grabbing; }
+.projects-grid .project-card {
+  flex: 0 0 300px;
 }
 .project-card {
   background: var(--bg-card);

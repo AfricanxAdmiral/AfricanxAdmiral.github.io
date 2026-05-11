@@ -24,3 +24,12 @@ description = "Full description of the third project, methodology, and impact."
 tech   = ["TypeScript", "Next.js", "Tailwind"]
 github = "https://github.com/AfricanxAdmiral"
 demo   = ""
+
+[[featured]]
+num    = "PROJ_04"
+title  = "PROJECT DELTA"
+excerpt = "The fourth project — scroll right to find it."
+description = "Full description of the fourth project, its purpose, and the technologies that made it possible."
+tech   = ["Rust", "WebAssembly", "SQLite"]
+github = "https://github.com/AfricanxAdmiral"
+demo   = ""

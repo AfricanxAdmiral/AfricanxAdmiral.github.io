@@ -79,6 +79,50 @@ document.querySelectorAll('.skills-grid').forEach(el => {
   skillObserver.observe(el);
 });
 
+// ── Drag-to-scroll for project rows ──────────────────────────
+document.querySelectorAll('.preview-cards, .projects-grid').forEach(el => {
+  let isDown = false, startX = 0, scrollStart = 0;
+  let velX = 0, lastX = 0, lastT = 0, rafId = null;
+
+  const momentum = () => {
+    if (Math.abs(velX) < 0.5) return;
+    el.scrollLeft -= velX;
+    velX *= 0.94;
+    rafId = requestAnimationFrame(momentum);
+  };
+
+  el.addEventListener('mousedown', e => {
+    isDown = true;
+    startX = e.pageX;
+    scrollStart = el.scrollLeft;
+    lastX = e.pageX;
+    lastT = Date.now();
+    velX = 0;
+    if (rafId) cancelAnimationFrame(rafId);
+    el.style.cursor = 'grabbing';
+    e.preventDefault();
+  });
+
+  el.addEventListener('mouseleave', () => {
+    if (isDown) { isDown = false; el.style.cursor = 'grab'; requestAnimationFrame(momentum); }
+  });
+  el.addEventListener('mouseup', () => {
+    isDown = false;
+    el.style.cursor = 'grab';
+    requestAnimationFrame(momentum);
+  });
+
+  el.addEventListener('mousemove', e => {
+    if (!isDown) return;
+    const now = Date.now();
+    const dt = Math.max(now - lastT, 1);
+    velX = (lastX - e.pageX) / dt * 16;
+    lastX = e.pageX;
+    lastT = now;
+    el.scrollLeft = scrollStart - (e.pageX - startX);
+  });
+});
+
 // ── Typewriter for hero tagline ───────────────────────────────
 const typeEl = document.querySelector('.typewriter');
 if (typeEl) {

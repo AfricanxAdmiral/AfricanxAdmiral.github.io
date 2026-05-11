@@ -76,10 +76,10 @@
       <span class="section-title-jp">作品集</span>
       <div class="section-divider"></div>
     </div>
-    <div class="preview-cards">
+    <div class="preview-cards fade-in">
       {{ $projects := hugo.Data.projects }}
-      {{ range first 3 $projects.featured }}
-      <div class="preview-card fade-in">
+      {{ range $projects.featured }}
+      <div class="preview-card">
         <div class="card-num">{{ .num }}</div>
         <div class="card-title">{{ .title }}</div>
         <div class="card-excerpt">{{ .excerpt }}</div>
@@ -90,7 +90,7 @@
       </div>
       {{ else }}
       {{ range seq 3 }}
-      <div class="preview-card fade-in">
+      <div class="preview-card">
         <div class="card-num">PROJ_0{{ . }}</div>
         <div class="card-title">PROJECT TITLE</div>
         <div class="card-excerpt">A brief description of this project and the problems it solves.</div>
