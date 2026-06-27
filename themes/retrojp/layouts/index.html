@@ -114,10 +114,10 @@
       <span class="section-title-jp">最新記事</span>
       <div class="section-divider"></div>
     </div>
-    <div class="preview-cards">
+    <div class="preview-cards fade-in">
       {{ $posts := where site.RegularPages "Section" "blog" }}
       {{ range first 3 $posts }}
-      <div class="preview-card blog-card fade-in">
+      <div class="preview-card blog-card">
         <div class="card-num">{{ .Date.Format "2006.01.02" }}</div>
         <div class="card-title">{{ .Title }}</div>
         <div class="card-excerpt">{{ .Summary | truncate 120 }}</div>
@@ -125,7 +125,7 @@
       </div>
       {{ else }}
       {{ range seq 3 }}
-      <div class="preview-card blog-card fade-in">
+      <div class="preview-card blog-card">
         <div class="card-num">2025.01.01</div>
         <div class="card-title">BLOG POST TITLE</div>
         <div class="card-excerpt">A preview of the blog post content, showing what the reader can expect inside...</div>

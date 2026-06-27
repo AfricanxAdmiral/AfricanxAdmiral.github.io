@@ -81,7 +81,7 @@ document.querySelectorAll('.skills-grid').forEach(el => {
 
 // ── Drag-to-scroll for project rows ──────────────────────────
 document.querySelectorAll('.preview-cards, .projects-grid').forEach(el => {
-  let isDown = false, startX = 0, scrollStart = 0;
+  let isDown = false, startX = 0, scrollStart = 0, dragged = false;
   let velX = 0, lastX = 0, lastT = 0, rafId = null;
 
   const momentum = () => {
@@ -93,6 +93,7 @@ document.querySelectorAll('.preview-cards, .projects-grid').forEach(el => {
 
   el.addEventListener('mousedown', e => {
     isDown = true;
+    dragged = false;
     startX = e.pageX;
     scrollStart = el.scrollLeft;
     lastX = e.pageX;
@@ -119,8 +120,14 @@ document.querySelectorAll('.preview-cards, .projects-grid').forEach(el => {
     velX = (lastX - e.pageX) / dt * 16;
     lastX = e.pageX;
     lastT = now;
+    if (Math.abs(e.pageX - startX) > 5) dragged = true;
     el.scrollLeft = scrollStart - (e.pageX - startX);
   });
+
+  // Suppress the click that follows a drag so cards don't navigate on release
+  el.addEventListener('click', e => {
+    if (dragged) { e.preventDefault(); e.stopPropagation(); }
+  }, true);
 });
 
 // ── Typewriter for hero tagline ───────────────────────────────
