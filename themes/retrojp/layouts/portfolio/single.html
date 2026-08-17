@@ -54,7 +54,7 @@
 </div>
 
 <!-- Projects -->
-<div class="content-section">
+<div class="content-section" id="selected-works">
   <div class="section-label fade-in">projects</div>
   <div class="section-title-row fade-in">
     <h2>SELECTED WORKS</h2>
@@ -63,7 +63,7 @@
   </div>
   <div class="projects-grid fade-in">
     {{ range $data.projects.featured }}
-    <div class="project-card">
+    <div class="project-card" id="{{ .num | urlize }}">
       <div class="project-num">{{ .num }}</div>
       <div class="project-title">{{ .title }}</div>
       <div class="project-desc">{{ .description }}</div>
@@ -72,7 +72,7 @@
       </div>
       <div class="project-links">
         {{ with .github }}<a class="project-link" href="{{ . }}" target="_blank" rel="noopener">GITHUB</a>{{ end }}
-        {{ with .demo }}<a class="project-link" href="{{ . }}" target="_blank" rel="noopener">LIVE</a>{{ end }}
+        {{ with .demo }}<a class="project-link" href="{{ . }}"{{ if hasPrefix . "http" }} target="_blank" rel="noopener"{{ end }}>LIVE</a>{{ end }}
       </div>
     </div>
     {{ end }}

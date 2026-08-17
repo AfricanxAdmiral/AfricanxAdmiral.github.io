@@ -1,0 +1,33 @@
+{{ define "main" }}
+
+<div class="page-hero">
+  <div class="page-hero-label fade-in">{{ site.Params.japaneseTitle }}</div>
+  <h1 class="page-hero-title fade-in">SIMPLE TOOLS</h1>
+  <div class="page-hero-jp fade-in">道具箱</div>
+  <p class="page-hero-desc fade-in">{{ .Description }}</p>
+</div>
+
+<div class="content-section">
+  <div class="section-label fade-in">utilities</div>
+  <div class="section-title-row fade-in">
+    <h2>ALL TOOLS</h2>
+    <span class="section-title-jp">一覧</span>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="tools-grid">
+    {{ range $i, $tool := .Pages.ByWeight }}
+    <a class="project-card tool-card fade-in" href="{{ $tool.RelPermalink }}">
+      <div class="project-num">TOOL_{{ printf "%02d" (add $i 1) }}</div>
+      <div class="project-title">{{ $tool.Title }}</div>
+      {{ with $tool.Params.jp }}<div class="tool-card-jp">{{ . }}</div>{{ end }}
+      <div class="project-desc">{{ $tool.Params.summary }}</div>
+      <div class="tool-card-go">OPEN →</div>
+    </a>
+    {{ else }}
+    <p class="tool-empty fade-in">No tools yet. Check back soon.</p>
+    {{ end }}
+  </div>
+</div>
+
+{{ end }}

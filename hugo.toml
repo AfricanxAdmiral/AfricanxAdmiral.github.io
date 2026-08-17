@@ -26,6 +26,10 @@ theme = "retrojp"
     name = "BLOG"
     url = "/blog/"
     weight = 3
+  [[menu.main]]
+    name = "TOOLS"
+    url = "/simple-tools/"
+    weight = 4
 
 [markup]
   [markup.highlight]

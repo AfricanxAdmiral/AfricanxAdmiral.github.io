@@ -765,6 +765,18 @@ a:hover { color: var(--magenta); }
   box-shadow: 0 0 20px rgba(0,255,204,0.1);
   transform: translateY(-3px);
 }
+/* Deep-linked card (arriving from a "VIEW DETAILS" link on the home page) */
+#selected-works,
+.project-card[id] { scroll-margin-top: 6rem; }
+.project-card.card-target {
+  border-color: var(--cyan);
+  animation: card-target-pulse 2s ease-out;
+}
+@keyframes card-target-pulse {
+  0%, 100% { box-shadow: 0 0 0 rgba(0,255,204,0); }
+  15%      { box-shadow: 0 0 24px rgba(0,255,204,0.45); }
+  70%      { box-shadow: 0 0 24px rgba(0,255,204,0.35); }
+}
 .project-num {
   font-family: var(--font-pixel);
   font-size: 0.45rem;
@@ -807,6 +819,118 @@ a:hover { color: var(--magenta); }
 .project-link:hover {
   border-color: var(--cyan);
   box-shadow: 0 0 8px rgba(0,255,204,0.2);
+}
+
+/* ============================================================
+   SIMPLE TOOLS — shared primitives, reused by every tool page
+   ============================================================ */
+
+/* ── Tool cards on the section hub ── */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+.tool-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+.tool-card-jp {
+  font-family: var(--font-jp);
+  font-size: 0.8rem;
+  color: var(--text-jp);
+  margin-bottom: 0.8rem;
+}
+.tool-card-go {
+  font-family: var(--font-pixel);
+  font-size: 0.45rem;
+  color: var(--cyan);
+  letter-spacing: 0.1em;
+}
+.tool-empty { color: var(--text-dim); }
+
+/* ── Form primitives ── */
+.tool-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 1.8rem;
+}
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.4rem;
+}
+.tool-field { display: flex; flex-direction: column; gap: 0.5rem; }
+.tool-field label {
+  font-family: var(--font-pixel);
+  font-size: 0.45rem;
+  color: var(--magenta);
+  letter-spacing: 0.1em;
+  line-height: 1.6;
+}
+.tool-field input {
+  width: 100%;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  padding: 0.7rem 0.8rem;
+  transition: all 0.2s;
+}
+.tool-field input:focus {
+  outline: none;
+  border-color: var(--cyan);
+  box-shadow: 0 0 8px var(--border-glow);
+}
+/* Spinners are unusable at this size and fight the pixel type */
+.tool-field input[type="number"] { -moz-appearance: textfield; appearance: textfield; }
+.tool-field input::-webkit-outer-spin-button,
+.tool-field input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.tool-field-hint { font-size: 0.8rem; color: var(--text-dim); }
+
+/* ── Readouts ── */
+.tool-readout {
+  margin-top: 1.6rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem 1rem;
+}
+.tool-readout-label {
+  font-family: var(--font-pixel);
+  font-size: 0.45rem;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+}
+.tool-readout-value {
+  font-family: var(--font-vt);
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--cyan);
+}
+.tool-readout-note { font-size: 0.85rem; color: var(--text-dim); }
+
+.tool-result {
+  margin-top: 1.6rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+.tool-result-figure {
+  font-family: var(--font-vt);
+  font-size: clamp(2.6rem, 10vw, 4.5rem);
+  line-height: 1;
+  color: var(--cyan);
+  text-shadow: 0 0 18px var(--border-glow);
+}
+.tool-result-note {
+  margin-top: 0.6rem;
+  color: var(--text-dim);
+  font-size: 0.9rem;
 }
 
 /* ============================================================
@@ -1016,4 +1140,7 @@ a:hover { color: var(--magenta); }
   .blog-post-item { grid-template-columns: 1fr; }
   .blog-post-date { min-width: unset; }
   .blog-list { padding-left: 2rem; padding-right: 2rem; }
+  .tools-grid { grid-template-columns: 1fr; }
+  .tool-grid  { grid-template-columns: 1fr; }
+  .tool-panel { padding: 1.2rem; }
 }

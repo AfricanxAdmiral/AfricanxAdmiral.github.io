@@ -130,6 +130,39 @@ document.querySelectorAll('.preview-cards, .projects-grid').forEach(el => {
   }, true);
 });
 
+// ── Deep-link to a card (e.g. /portfolio/#proj_02) ────────────
+// Scrolls the page to the card AND scrolls its horizontal row so a card
+// parked off-screen in the carousel is actually visible on arrival.
+function focusHashTarget() {
+  const hash = window.location.hash;
+  if (hash.length < 2) return;
+
+  let target;
+  try { target = document.querySelector(hash); } catch (e) { return; }
+  if (!target) return;
+
+  // The row is opacity:0 until the fade observer fires — reveal it now so
+  // the card isn't invisible when we land on it.
+  const faded = target.closest('.fade-in');
+  if (faded) faded.classList.add('visible');
+
+  if (target.closest('.projects-grid, .preview-cards')) {
+    target.classList.add('card-target');
+    setTimeout(() => target.classList.remove('card-target'), 2000);
+  }
+
+  // One call scrolls every scrollable ancestor: the page vertically (offset by
+  // the card's scroll-margin-top so the fixed nav doesn't cover it) and the
+  // horizontal carousel so an off-screen card is brought into view. Doing the
+  // maths by hand instead races the browser's own in-flight anchor jump.
+  target.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'center' });
+}
+
+// Run after layout settles (the native anchor jump may still be in flight at
+// `load`), and on any later hash change.
+window.addEventListener('load', () => setTimeout(focusHashTarget, 100));
+window.addEventListener('hashchange', focusHashTarget);
+
 // ── Typewriter for hero tagline ───────────────────────────────
 const typeEl = document.querySelector('.typewriter');
 if (typeEl) {

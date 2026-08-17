@@ -6,7 +6,9 @@
     <div class="nav-right">
       <ul class="nav-links">
         {{ range site.Menus.main }}
-        <li><a href="{{ .URL | relURL }}" class="{{ if eq $.RelPermalink .URL }}active{{ end }}">{{ .Name }}</a></li>
+        {{/* Exact match for HOME; section links also stay lit on their child pages */}}
+        {{ $active := or (eq $.RelPermalink .URL) (and (ne .URL "/") (hasPrefix $.RelPermalink .URL)) }}
+        <li><a href="{{ .URL | relURL }}" class="{{ if $active }}active{{ end }}">{{ .Name }}</a></li>
         {{ end }}
       </ul>
       <div class="nav-sep"></div>

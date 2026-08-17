@@ -1,0 +1,76 @@
+{{ define "main" }}
+
+<div class="page-hero">
+  <div class="page-hero-label fade-in">simple tools</div>
+  <h1 class="page-hero-title fade-in">PRICE → HOURS</h1>
+  <div class="page-hero-jp fade-in">{{ .Params.jp }}</div>
+  <p class="page-hero-desc fade-in">{{ .Params.summary }}</p>
+</div>
+
+<div id="wh-calc">
+
+  <div class="content-section">
+    <div class="section-label fade-in">inputs</div>
+    <div class="section-title-row fade-in">
+      <h2>YOUR NUMBERS</h2>
+      <span class="section-title-jp">給与</span>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="tool-panel fade-in">
+      <div class="tool-grid">
+        <div class="tool-field">
+          <label for="wh-salary">ANNUAL SALARY</label>
+          <input id="wh-salary" type="number" inputmode="decimal" min="0" step="any" value="60000">
+        </div>
+        <div class="tool-field">
+          <label for="wh-hours">HOURS PER DAY</label>
+          <input id="wh-hours" type="number" inputmode="decimal" min="0" max="24" step="any" value="8">
+        </div>
+        <div class="tool-field">
+          <label for="wh-days">DAYS PER WEEK</label>
+          <input id="wh-days" type="number" inputmode="decimal" min="0" max="7" step="any" value="5">
+        </div>
+        <div class="tool-field">
+          <label for="wh-off">DAYS OFF PER YEAR</label>
+          <input id="wh-off" type="number" inputmode="decimal" min="0" step="any" value="25">
+          <span class="tool-field-hint">Paid holiday + public holidays</span>
+        </div>
+      </div>
+
+      <div class="tool-readout">
+        <span class="tool-readout-label">EFFECTIVE RATE</span>
+        <span class="tool-readout-value" id="wh-rate">—</span>
+        <span class="tool-readout-note" id="wh-rate-note"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-section">
+    <div class="section-label fade-in">output</div>
+    <div class="section-title-row fade-in">
+      <h2>THE PRICE</h2>
+      <span class="section-title-jp">価格</span>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="tool-panel fade-in">
+      <div class="tool-field">
+        <label for="wh-price">PRICE OF THE THING</label>
+        <input id="wh-price" type="number" inputmode="decimal" min="0" step="any" placeholder="0">
+      </div>
+
+      <div class="tool-result" aria-live="polite">
+        <div class="tool-result-figure" id="wh-result">—</div>
+        <div class="tool-result-note" id="wh-result-note">Enter a price to see what it costs in work time.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{{ end }}
+
+{{ define "scripts" }}
+<script src="{{ "js/tools/price-to-work-hours.js" | relURL }}"></script>
+{{ end }}

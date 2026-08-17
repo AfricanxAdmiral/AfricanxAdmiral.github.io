@@ -86,7 +86,7 @@
         <div class="project-tech" style="margin-top:0.8rem">
           {{ range .tech }}<span class="tech-tag">{{ . }}</span>{{ end }}
         </div>
-        <a class="card-link" href="{{ "/portfolio/" | relURL }}">VIEW DETAILS →</a>
+        <a class="card-link" href="{{ printf "/portfolio/#%s" (.num | urlize) | relURL }}">VIEW DETAILS →</a>
       </div>
       {{ else }}
       {{ range seq 3 }}

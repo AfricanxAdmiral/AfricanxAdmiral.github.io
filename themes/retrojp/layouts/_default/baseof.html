@@ -20,5 +20,6 @@
   </main>
   {{ partial "footer.html" . }}
   <script src="{{ "js/main.js" | relURL }}"></script>
+  {{ block "scripts" . }}{{ end }}
 </body>
 </html>

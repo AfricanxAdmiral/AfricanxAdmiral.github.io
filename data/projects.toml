@@ -1,11 +1,11 @@
 [[featured]]
 num    = "PROJ_01"
-title  = "PROJECT ALPHA"
-excerpt = "A brief overview of what this project does and why it matters."
-description = "Full description of the project, its goals, challenges overcome, and outcomes achieved. Replace this with your actual project details."
-tech   = ["Go", "React", "PostgreSQL"]
+title  = "SIMPLE TOOLS"
+excerpt = "A growing set of small, single-purpose web tools."
+description = "A growing collection of small web tools that each do one thing. No sign-up, no tracking, no backend — every calculation runs in the browser. First up: turning a price into the hours of work it actually costs."
+tech   = ["Hugo", "JavaScript", "CSS"]
 github = "https://github.com/AfricanxAdmiral"
-demo   = ""
+demo   = "/simple-tools/"
 
 [[featured]]
 num    = "PROJ_02"
